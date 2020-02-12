@@ -4,7 +4,7 @@
 
 ## 安装插件
 ```
-npm install
+npm install vue-frozen-ui --save
 ```
 
 ### 在vue中导入
