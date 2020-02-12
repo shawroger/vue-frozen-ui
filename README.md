@@ -1,29 +1,31 @@
-# ai-lab
+# vue-frozen-ui
 
-## Project setup
+## 仿QQ的frozen-ui的vue版UI组件
+
+## 安装插件
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### 在vue中导入
 
-### Compiles and minifies for production
+``` javascript
+import FrozenUI  from 'vue-frozen-ui';
+import 'vue-frozen-ui/packages/basic.css';
+Vue.use(FrozenUI)
 ```
-npm run build
-```
+### 直接使用UI组件
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+``` html
+<template>
+	<div>
+		<div class="fixed-header">
+			<fz-header title="消息" avatar="./logo" @clickAvatar="clickIcon" @clickIcon="clickIcon" />
+			<fz-search placeholder="搜索" v-model="data" @clickClear="clickClear" @change="changeData" />
+			<fz-tooltip type="guide" icon="cross" @closeTooltips="closeTooltips">
+        欢迎使用 vue-frozen-ui
+      </fz-tooltip>
+		</div>
+</template>
+  ```
+  
