@@ -12,7 +12,7 @@ npm install vue-frozen-ui --save
 
 ```javascript
 import FrozenUI from "vue-frozen-ui";
-import "vue-frozen-ui/dist/frozen-ui.css";
+import "vue-frozen-ui/dist/style.css";
 createApp(App).use(FrozenUI).mount("#root");
 ```
 

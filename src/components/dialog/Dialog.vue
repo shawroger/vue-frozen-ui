@@ -2,8 +2,8 @@
 	<div v-if="show$" class="ui-dialog show">
 		<div class="ui-dialog-cnt">
 			<div class="ui-dialog-bd">
-				<slot name="body">{{ body$ }}</slot>
 				<div v-if="__html$" v-html="__html$"></div>
+				<slot name="body">{{ body$ }}</slot>
 			</div>
 			<div class="ui-dialog-ft" v-show="showFooter">
 				<button v-if="showBtn" @click="clickDefaultBtn">{{ btnText }}</button>
@@ -51,6 +51,10 @@ export default {
 			type: String,
 			default: "",
 		},
+		afterClose: {
+			type: Function,
+			default: () => {},
+		},
 	},
 	data() {
 		return {
@@ -58,11 +62,13 @@ export default {
 			cross$: false,
 			body$: "标题",
 			__html: "",
+			afterClose$: () => {},
 		};
 	},
 	methods: {
 		close() {
 			this.show$ = false;
+			this.afterClose$();
 		},
 
 		open() {
@@ -71,9 +77,13 @@ export default {
 
 		toggle() {
 			this.show$ = !this.show$;
+			if (!this.show$) {
+				this.afterClose$();
+			}
 		},
 		clickDefaultBtn() {
 			this.show$ = false;
+			this.afterClose$();
 		},
 
 		mergeConf(config) {
@@ -95,6 +105,7 @@ export default {
 		this.cross$ = this.cross;
 		this.body$ = this.body;
 		this.__html$ = this.__html;
+		this.afterClose$ = this.afterClose;
 	},
 };
 </script>

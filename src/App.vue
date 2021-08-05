@@ -3,18 +3,19 @@
 		<fz-header
 			title="消息"
 			avatar="https://s2.ax1x.com/2019/12/05/QGBDfI.jpg"
-			@clickIcon="clickIcon"
+			@click-icon="clickIcon"
+			@click-avatar="clickAvatar"
 		/>
 		<fz-search
 			placeholder="搜索"
-			v-model="data"
+			v-model:value="data"
 			@clear="clickClear"
 			@change="changeData"
 		/>
 		<fz-tooltip type="guide" icon="cross" v-for="i in 0" :key="i"
 			>腾讯紧急通知：你妈今晚买菜必涨价</fz-tooltip
 		>
-		<fz-list :source="source" :twoLines="true" @click-item="clickConsole" />
+		<fz-list :source="source" :twoLines="true" @click-item="clickList" />
 		<fz-footer @click="clickConsole" color="grey">
 			<template v-slot:0>
 				<i class="fa fa-comments-o"></i>
@@ -30,10 +31,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, getCurrentInstance } from "vue";
+import { ref } from "vue";
 import { useDialog } from "./components";
-const ctx = getCurrentInstance();
 const data = ref("");
+
 const store = [
 	{
 		avatar: "https://pic.imgdb.cn/item/610b95715132923bf81f386a.png",
@@ -65,8 +66,26 @@ function clickClear() {
 function clickIcon() {
 	useDialog({
 		body: "你的QQ现在是我的了",
-		__html: "",
 		btnText: "给👴爬",
+		afterClose() {
+			console.log("无了");
+		},
+	});
+}
+
+function clickAvatar(avatar: string) {
+	useDialog({
+		body: `这是我自己啊`,
+		html: `<img src=${avatar} class="list-avatar" />`,
+		btnText: "知道了",
+	});
+}
+
+function clickList(e: { avatar: string; text: string; subtext: string }) {
+	useDialog({
+		body: `这是《 ${e.text} 》的面板`,
+		html: `<img src=${e.avatar} class="list-avatar" />`,
+		btnText: "知道了",
 	});
 }
 
@@ -85,5 +104,14 @@ function changeData(e: any) {
 i {
 	font-size: 20px;
 	color: grey;
+}
+</style>
+
+<style>
+.list-avatar {
+	width: 80px;
+	height: 80px;
+	margin-bottom: 20px;
+	border-radius: 50%;
 }
 </style>

@@ -5,11 +5,10 @@
 			<div class="ui-searchbar-text __fz-search-center">
 				<input
 					class="fz-search-input"
-					ref="__fz_search_input"
 					:value="value"
 					:type="type"
 					:placeholder="placeholder"
-					@input="__modelInput($event.target.value)"
+					@input="$emit('update:value', $event.target.value)"
 					@focus="__focusInput"
 					@blur="__blurInput"
 				/>
@@ -28,10 +27,6 @@
 <script>
 export default {
 	name: "fz-search",
-	model: {
-		prop: "value",
-		event: "__changeInput",
-	},
 	props: {
 		text: {
 			type: String,
@@ -56,10 +51,6 @@ export default {
 		};
 	},
 	methods: {
-		__modelInput(val) {
-			this.$emit("__changeInput", val ? val : "");
-			this.$emit("change", val ? val : "");
-		},
 		__focusInput() {
 			this.showIconSearch = false;
 		},

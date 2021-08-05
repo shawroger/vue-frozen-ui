@@ -1,6 +1,6 @@
 import App from "./App.vue";
 
-import "./component/frozen-ui.css";
+import "./components/frozen-ui.css";
 
 import FrozenUI from "./components";
 
