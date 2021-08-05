@@ -1,31 +1,46 @@
 # vue-frozen-ui
 
-## 仿QQ的frozen-ui的vue版UI组件
+## 仿 QQ 的 frozen-ui 的 vue 版 UI 组件
 
 ## 安装插件
+
 ```
 npm install vue-frozen-ui --save
 ```
 
-### 在vue中导入
+### 在 vue 中导入
 
-``` javascript
-import FrozenUI  from 'vue-frozen-ui';
-import 'vue-frozen-ui/packages/basic.css';
-Vue.use(FrozenUI)
+```javascript
+import FrozenUI from "vue-frozen-ui";
+import "vue-frozen-ui/dist/frozen-ui.css";
+createApp(App).use(FrozenUI).mount("#root");
 ```
-### 直接使用UI组件
 
-``` html
+### 直接使用 UI 组件
+
+```html
 <template>
 	<div>
 		<div class="fixed-header">
-			<fz-header title="消息" avatar="./logo" @clickAvatar="clickIcon" @clickIcon="clickIcon" />
-			<fz-search placeholder="搜索" v-model="data" @clickClear="clickClear" @change="changeData" />
-			<fz-tooltip type="guide" icon="cross" @closeTooltips="closeTooltips">
-        欢迎使用 vue-frozen-ui
-      </fz-tooltip>
+			<fz-header
+			title="消息"
+				avatar="./logo"
+				@clickAvatar="clickIcon"
+				@clickIcon="clickIcon"
+			/>
+			<fz-search
+				placeholder="搜索"
+				v-model="data"
+				@clear="clickClear"
+				@change="changeData"
+			/>
+			<fz-tooltip
+				type="guide"
+				icon="cross"
+				@closeTooltips="closeTooltips"
+			>
+        		欢迎使用 vue-frozen-ui
+      		</fz-tooltip>
 		</div>
 </template>
-  ```
-  
+```
