@@ -27,6 +27,7 @@ const build = defineConfig({
 });
 
 export default ({ command, mode }) => {
+	return serve;
 	if (command === "serve") {
 		return serve;
 	} else {
