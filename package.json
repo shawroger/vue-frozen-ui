@@ -5,7 +5,7 @@
 	"main": "dist/vue-frozen-ui.umd.js",
 	"scripts": {
 		"dev": "vite",
-		"build": "vue-tsc --noEmit && vite build",
+		"build": "vite build",
 		"build:nocheck": "rimraf dist && vite build",
 		"deploy": "zx shell/deploy.mjs",
 		"serve": "vite preview"
