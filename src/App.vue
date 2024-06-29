@@ -2,7 +2,7 @@
 	<div>
 		<fz-header
 			title="消息"
-			avatar="https://s2.ax1x.com/2019/12/05/QGBDfI.jpg"
+			avatar="/me.jpg"
 			@click-icon="clickIcon"
 			@click-avatar="clickAvatar"
 		/>
@@ -12,9 +12,7 @@
 			@clear="clickClear"
 			@change="changeData"
 		/>
-		<fz-tooltip type="guide" icon="cross" v-for="i in 0" :key="i"
-			>腾讯紧急通知：你妈今晚买菜必涨价</fz-tooltip
-		>
+		
 		<fz-list :source="source" :twoLines="true" @click-item="clickList" />
 		<fz-footer @click="clickConsole" color="grey">
 			<template v-slot:0>
@@ -35,23 +33,12 @@ import { ref } from "vue";
 import { useDialog } from "./components";
 const data = ref("");
 
-const store = [
-	{
-		avatar: "https://pic.imgdb.cn/item/610b95715132923bf81f386a.png",
-		text: "爸爸",
-		subtext: "儿子不哭",
-	},
-	{
-		avatar: "https://s2.ax1x.com/2019/12/07/QNz9sJ.jpg",
-		text: "儿子",
-		subtext: "爸爸爱你",
-	},
-	{
-		avatar: "https://s2.ax1x.com/2019/12/05/QGJ9Zq.jpg",
-		text: "狗",
-		subtext: "爬！",
-	},
-];
+const store = Array(8).fill(0).map((_,k)=>k+1).map((e)=> ({
+		avatar: `/avatar-${(e).toString().padStart(3, '0')}.jpg`,
+		subtext: `测试对话框内容 #${e.toString().padStart(2, '0')}`,
+		text: `测试昵称 #${e.toString().padStart(2, '0')}`,
+	
+	}));
 const source = ref(store);
 
 function clickConsole(e: any) {
@@ -65,8 +52,8 @@ function clickClear() {
 
 function clickIcon() {
 	useDialog({
-		body: "你的QQ现在是我的了",
-		btnText: "给👴爬",
+		body: "点击了 + 号",
+		btnText: "OK",
 		afterClose() {
 			console.log("无了");
 		},
@@ -75,7 +62,7 @@ function clickIcon() {
 
 function clickAvatar(avatar: string) {
 	useDialog({
-		body: `这是我自己啊`,
+		body: `这是我自己`,
 		html: `<img src=${avatar} class="list-avatar" />`,
 		btnText: "知道了",
 	});
